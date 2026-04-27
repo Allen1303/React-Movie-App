@@ -1,7 +1,23 @@
+import { useState } from "react";
 import { LogIn } from "lucide-react";
-export default function LoginForm() {
+
+export default function LoginForm({ onLogin }) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  // helper function for for submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("name value.", name);
+    onLogin(name);
+    setName("");
+    setEmail("");
+  };
   return (
-    <form className="bg-white shadow-xl rounded-lg p-8 w-full max-w-sm">
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white shadow-xl rounded-lg p-8 w-full max-w-sm"
+    >
       <header className="mb-6">
         <h1 className="text-xl font-semibold text-gray-900 tracking-tight mb-1">
           Login Form
@@ -12,7 +28,7 @@ export default function LoginForm() {
           <label
             htmlFor="name"
             className="block text-xs font-medium text-gray-500 uppercase tracking-wide mb-1.5
-	"
+    "
           >
             Name:
           </label>
@@ -20,6 +36,8 @@ export default function LoginForm() {
             type="text"
             id="name"
             placeholder="Enter name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             className="w-full h-11 px-3.5 border border-gray-200 rounded-lg text-sm bg-gray-50 text-gray-900 placeholder:text-slate-350 "
           />
         </div>
@@ -34,12 +52,14 @@ export default function LoginForm() {
             type="email"
             id="email"
             placeholder="email@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full h-11 px-3.5 border border-gray-200 rounded-lg text-sm bg-gray-50 focus:border-sky-500 focus:ring-2 focus:ring-sky-500/10 placeholder:text-slate-350"
           />
         </div>
         <button
           type="submit"
-          className=" flex items-center justify-center gap-2 px-4 py-2 w-full h-11 bg-sky-600 hover:bg-sky-800 active:scale-[0.98] text-white text-sm font-semibold rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
+          className=" flex items-center justify-center gap-2 px-4 py-2 w-full h-11 bg-sky-600 hover:bg-sky-800 cursor-pointer active:scale-[0.98] text-white text-sm font-semibold rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <LogIn className="w-5 h-5" />
           Sign in

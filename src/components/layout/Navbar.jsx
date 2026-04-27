@@ -1,6 +1,7 @@
 import { LayoutTemplate, Sun, Moon } from "lucide-react";
 
-export default function Navbar() {
+export default function Navbar({ user }) {
+  console.log("user in navbar", user);
   const navItems = ["Home", "About", "Contact"];
   return (
     <nav className="flex justify-between items-center px-6 py-2 bg-white shadow-md z-10">
@@ -26,10 +27,10 @@ export default function Navbar() {
         </button>
         <img
           src="#"
-          alt="username"
+          alt="Pic"
           className="w-12 h-12 rounded-full ring-2 ring-slate-400 ring-offset-2"
         />
-        <span className="text-sm font-medium text-slate-700">John. S</span>
+        <span className="text-sm font-medium text-slate-700">{user}</span>
       </div>
     </nav>
   );
