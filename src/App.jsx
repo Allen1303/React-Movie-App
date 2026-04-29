@@ -2,6 +2,7 @@ import { useState } from "react";
 import LoginPage from "./components/login-pages/LoginPage";
 import Dashboard from "./components/layout/Dashboard";
 
+// TODO: Refactor App.jsx resonsibilities to only render component
 function App() {
   const [user, setUser] = useState(null);
   console.log("user in app:", user);
